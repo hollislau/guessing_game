@@ -1,24 +1,14 @@
 <script type="text/javascript">
   var greeting = alert("Greetings, inferior mortal! Renowned physicist, Dr. Sheldon Cooper, challenges you to a game of 'Rock-Paper-Scissors-Lizard-Spock'.");
   var userName = prompt("What's your name?");
-  var choices = choosing();
-  var message = compare(choices);
-  alert(message);
-  var replay = confirm("That was fun, " + userName + "! Do you want to play again?");
-  /*
-  while (replay) {                // Replays the game for as long as user desires
-    userChoice = prompt("Okay, please select either 'rock', 'paper', 'scissors', 'lizard', or 'Spock'!");
-    // checkUserChoice();
-    randomChoice();
-    messageCompare = userName + ": " + userChoice + "; Computer: " + computerChoice;
-    compare();
-    replay = confirm("Great game! Another round?");
-  }
-  */
+  do {
+    var choices = choosing();
+    var message = compare(choices);
+    alert(message);
+    var replay = confirm("That was fun, " + userName + "! Do you want to play again?");
+  } while (replay);
 
   alert("Okay, thanks for playing " + userName + "!");    // Ends the game
-
-
 
   function checkUserChoice(userChoice) {    // Checks that user input is valid; otherwise prompts user repeatedly until valid input is provided
     if (userChoice !== "rock" &&
@@ -31,7 +21,6 @@
       return true;
     }
   }
-
 
   function randomChoice() {       // Generates random selection for the computer
     var randomSelection = Math.random();
@@ -65,15 +54,6 @@
   }
 
   function compare(choices) {        // Compares user and computer selections and determines winner
-      /*
-      while (userChoice === computerChoice) {     // Resets user and computer selections in case of ties
-        alert(messageCompare);
-        userChoice = prompt("It's a tie! Please select 'rock', 'paper', 'scissors', 'lizard', or 'Spock' again.");
-        checkUserChoice();
-        randomChoice();
-        messageCompare = userName + ": " + userChoice + "; Computer: " + computerChoice;
-      }
-      */
       var userChoice = choices[0];
       var sheldonChoice = choices[1];
       var message;
@@ -167,6 +147,5 @@
     return message;
   }
 
-
-
 </script>
+
