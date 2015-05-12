@@ -1,16 +1,19 @@
 <script type="text/javascript">
-var greeting = alert("Hi there! Let's play 'Rock-Paper-Scissors-Lizard-Spock' (made famous by The Big Bang Theory)!")
+
+var greeting = alert("Hi there! Let's play 'Rock-Paper-Scissors-Lizard-Spock' (made famous by The Big Bang Theory)!");
 var userName = prompt("What's your name?");
 var userChoice = prompt("Okay " + userName + ", please select either 'rock', 'paper', 'scissors', 'lizard', or 'Spock'!");
-var checkUserChoice = function () {
+
+function checkUserChoice() {    // Checks that user input is valid; otherwise prompts user repeatedly until valid input is provided
 	while (userChoice !== "rock" && userChoice !== "paper" && userChoice !== "scissors" && userChoice !== "lizard" && userChoice !== "Spock") {
     	alert(userName + ": " + userChoice);
-    	userChoice = prompt("That's not a valid choice! Please select only 'rock', 'paper', 'scissors', 'lizard', or 'Spock'.");
+    	userChoice = prompt("That's not a valid choice, " + userName + "! Please select only 'rock', 'paper', 'scissors', 'lizard', or 'Spock'.");
     }
 }
-checkUserChoice ();
+checkUserChoice();
+
 var computerChoice;
-var randomChoice = function () {
+function randomChoice() {       // Generates random selection for the computer
 	computerChoice = Math.random();
 	if (computerChoice <= 0.20) {
     	computerChoice = "rock";
@@ -24,18 +27,20 @@ var randomChoice = function () {
     	computerChoice = "Spock";
 	}
 }
-randomChoice ();
-var messageCompare = userName + ": " + userChoice + "; Computer: " + computerChoice;
-var compare = function () {
-    while (userChoice === computerChoice) {
+randomChoice();
+
+var messageCompare = userName + ": " + userChoice + "; Computer: " + computerChoice;    // Stores user and computer selections
+
+function compare() {        // Compares user and computer selections and determines winner
+    while (userChoice === computerChoice) {     // Resets user and computer selections in case of ties
     	alert(messageCompare);
     	userChoice = prompt("It's a tie! Please select rock, paper, scissors, lizard, or Spock again.");
-    	checkUserChoice ();
-    	randomChoice ();
+    	checkUserChoice();
+    	randomChoice();
     	messageCompare = userName + ": " + userChoice + "; Computer: " + computerChoice;
     }
     alert(messageCompare);
-    switch (userChoice) {
+    switch (userChoice) {   // Determines winner
     	case "rock":
     		switch (computerChoice) {
     			case "paper":
@@ -118,22 +123,27 @@ var compare = function () {
     		break;
     }
 }
-compare ();
-var replay = prompt("That was fun! Do you want to play again? Please enter 'yes' or 'no'.");
-var checkReplay = function () {
+compare();
+
+var replay = prompt("That was fun, " + userName + "! Do you want to play again? Please enter 'yes' or 'no'.");
+
+function checkReplay() {        // Checks if user input is valid; otherwise prompts user repeatedly until valid input is provided
 	while (replay !== "yes" && replay !== "no") {
-		replay = prompt("I'm sorry, I didn't understand your response. Did you still want to play? Please enter 'yes' or 'no'.");
+		replay = prompt("I'm sorry, " + userName + ". I didn't understand your response. Did you still want to play? Please enter 'yes' or 'no'.");
 	}
 }
-checkReplay ();
-while (replay === "yes") {
-	userChoice = prompt("Okay " + userName + ", please select either rock, paper, scissors, lizard, or Spock!");
-	checkUserChoice ();
-	randomChoice ();
+checkReplay();
+
+while (replay === "yes") {      // Replays the game for as long as user desires
+	userChoice = prompt("Okay, please select either rock, paper, scissors, lizard, or Spock!");
+	checkUserChoice();
+	randomChoice();
 	messageCompare = userName + ": " + userChoice + "; Computer: " + computerChoice;
-	compare ();
+	compare();
 	replay = prompt("Great game! Another round? Enter 'yes' or 'no' please.");
-	checkReplay ();
+	checkReplay();
 }
-alert("Okay, thanks for playing " + userName + "!");
+
+alert("Okay, thanks for playing " + userName + "!");    // Ends the game
+
 </script>
