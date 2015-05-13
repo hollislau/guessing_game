@@ -6,18 +6,36 @@
     alert("Greetings. Renowned physicist, Dr. Sheldon Cooper, challenges you to a game of 'Rock-Paper-Scissors-Lizard-Spock'!");
     var userName = prompt("What is your name, inferior one?");
 
+  function User() {
+    this.counter = 0;
+    this.win = function() {
+        this.counter++;
+    }
+  }
+
+  var user = new User();
+  var sheldon = new User();
+
     // Plays and replays the game
     do {
       // choicesArray[0]: user's choice, choicesArray[1]: Sheldon's choice
+
+
+
       var choicesArray = choose();
       var outcomeString = compare(choicesArray);
       var message = userName + ": " + choicesArray[0] + "; Sheldon: " + choicesArray[1] + ". " + outcomeString;
       alert(message);
+      alert(userName + ": " + user.counter + " wins; Sheldon: " + sheldon.counter + " wins");
       var replay = confirm("That was fun, " + userName + "! Do you want to play again?");
     } while (replay);
 
     // Ends the game
     alert("Okay, thanks for playing, " + userName + "!");
+
+  var game = new Game(choicesArray[0],choicesArray[1]);
+
+  alert(game.user);
 
     // Checks for valid user input
     function checkUserChoice(userChoice) {
@@ -90,15 +108,19 @@
             switch (sheldonChoice) {
               case "paper":
                 message = "Paper covers rock! Sheldon wins!";
+                sheldon.win();
                 break;
               case "scissors":
                 message = "Rock crushes scissors! " + userName + " wins!";
+                user.win();
                 break;
               case "lizard":
                 message = "Rock crushes lizard! " + userName + " wins!";
+                user.win();
                 break;
               case "Spock":
                 message = "Spock vaporizes rock! Sheldon wins!";
+                sheldon.win();
                 break;
             }
             break;
@@ -108,15 +130,19 @@
             switch (sheldonChoice) {
               case "rock":
                 message = "Paper covers rock! " + userName + " wins!";
+                user.win();
                 break;
               case "scissors":
                 message = "Scissors cut paper! Sheldon wins!";
+                sheldon.win();
                 break;
               case "lizard":
                 message = "Lizard eats paper! Sheldon wins!";
+                sheldon.win();
                 break;
               case "Spock":
                 message = "Paper disproves Spock! " + userName + " wins!";
+                user.win();
                 break;
             }
             break;
@@ -126,15 +152,19 @@
             switch (sheldonChoice) {
               case "rock":
                 message = "Rock crushes scissors! Sheldon wins!";
+                sheldon.win();
                 break;
               case "paper":
                 message = "Scissors cut paper! " + userName + " wins!";
+                user.win();
                 break;
               case "lizard":
                 message = "Scissors decapitate lizard! " + userName + " wins!";
+                user.win();
                 break;
               case "Spock":
                 message = "Spock smashes scissors! Sheldon wins!";
+                sheldon.win();
                 break;
             }
             break;
@@ -144,15 +174,19 @@
             switch (sheldonChoice) {
               case "rock":
                 message = "Rock crushes lizard! Sheldon wins!";
+                sheldon.win();
                 break;
               case "paper":
                 message = "Lizard eats paper! " + userName + " wins!";
+                user.win();
                 break;
               case "scissors":
                 message = "Scissors decapitate lizard! Sheldon wins!";
+                sheldon.win();
                 break;
               case "Spock":
                 message = "Lizard poisons Spock! " + userName + " wins!";
+                user.win();
                 break;
             }
             break;
@@ -162,15 +196,19 @@
             switch (sheldonChoice) {
               case "rock":
                 message = "Spock vaporizes rock! " + userName + " wins!";
+                user.win();
                 break;
               case "paper":
                 message = "Paper disproves Spock! Sheldon wins!";
+                sheldon.win();
                 break;
               case "scissors":
                 message = "Spock smashes scissors! " + userName + " wins!";
+                user.win();
                 break;
               case "lizard":
                 message = "Lizard poisons Spock! Sheldon wins!";
+                sheldon.win();
                 break;
             }
             break;
