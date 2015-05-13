@@ -13,4 +13,6 @@ Paper disproves Spock;
 Spock vaporizes rock;
 (and as it always has) Rock crushes scissors
 
-After the match, the user can play again as many times as he/she chooses.  The user is only allowed to provide input from the choices provided; otherwise he/she will be prompted to re-enter his/her input until a valid selection is made. 
+After the match, the user can play again as many times as he/she chooses.  The user is only allowed to provide input from the choices provided; otherwise he/she will be prompted to re-enter his/her input until a valid selection is made.
+
+5/12/15: Revised the structure of the code.
