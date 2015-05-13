@@ -1,156 +1,183 @@
 <script type="text/javascript">
-  alert("Greetings, inferior mortal! Renowned physicist, Dr. Sheldon Cooper, challenges you to a game of 'Rock-Paper-Scissors-Lizard-Spock'.");
-  var userName = prompt("What's your name?");
-  do {
-    var choicesArray = choose();
-    // choicesArry[0]: user's choice, choicesArray[1]: Sheldon's choice
-    var outcomeString = compare(choicesArray);
-    var message = userName + ": " + choicesArray[0] + "; Sheldon: " + choicesArray[1] + ". " + outcomeString;
-    alert(message);
-    var replay = confirm("That was fun, " + userName + "! Do you want to play again?");
-  } while (replay);
 
-  alert("Okay, thanks for playing, " + userName + "!");    // Ends the game
+  (function() {
 
-  function checkUserChoice(userChoice) {    // Checks that user input is valid; otherwise prompts user repeatedly until valid input is provided
-    if (userChoice !== "rock" &&
-        userChoice !== "paper" &&
-        userChoice !== "scissors" &&
-        userChoice !== "lizard" &&
-        userChoice !== "Spock") {
-      return false;
-    } else {
-      return true;
-    }
-  }
+    // Introduction
+    alert("Greetings. Renowned physicist, Dr. Sheldon Cooper, challenges you to a game of 'Rock-Paper-Scissors-Lizard-Spock'!");
+    var userName = prompt("What is your name, inferior one?");
 
-  function randomChoice() {       // Generates random selection for the computer
-    var randomSelection = Math.random();
-    if (randomSelection <= 0.125) {
-        return "rock";
-    } else if (randomSelection <= 0.25) {
-        return "paper";
-    } else if (randomSelection <= 0.375) {
-        return "scissors";
-    } else if (randomSelection <= 0.5) {
-        return "lizard";
-    } else {
-        return "Spock";
-    }
-  }
+    // Plays and replays the game
+    do {
+      // choicesArray[0]: user's choice, choicesArray[1]: Sheldon's choice
+      var choicesArray = choose();
+      var outcomeString = compare(choicesArray);
+      var message = userName + ": " + choicesArray[0] + "; Sheldon: " + choicesArray[1] + ". " + outcomeString;
+      alert(message);
+      var replay = confirm("That was fun, " + userName + "! Do you want to play again?");
+    } while (replay);
 
-  function choose() {
-    // User chooses
-    var userChoice = prompt("Okay " + userName + ", please select either 'rock', 'paper', 'scissors', 'lizard', or 'Spock'!");
+    // Ends the game
+    alert("Okay, thanks for playing, " + userName + "!");
 
-    // Confirm valid input
-    while (!checkUserChoice(userChoice)) {
-      userChoice = prompt("That's not a valid choice, " + userName + "! Please select only 'rock', 'paper', 'scissors', 'lizard', or 'Spock'.");
-    }
-
-    // Sheldon chooses
-    var sheldonChoice = randomChoice();
-
-    // Test for a tie
-    while (sheldonChoice == userChoice) {
-      userChoice = prompt("It's a tie! Please select 'rock', 'paper', 'scissors', 'lizard', or 'Spock' again.");
-    }
-    return [userChoice, sheldonChoice];
-  }
-
-  function compare(choicesArray) {        // Compares user and computer selections and determines winner
-      var userChoice = choicesArray[0];
-      var sheldonChoice = choicesArray[1];
-      var message;
-
-      switch (userChoice) {   // Determines winner
-        case "rock":
-          switch (sheldonChoice) {
-            case "paper":
-              message = "Paper covers rock! Sheldon wins!";
-              break;
-            case "scissors":
-              message = "Rock crushes scissors! " + userName + " wins!";
-              break;
-            case "lizard":
-              message = "Rock crushes lizard! " + userName + " wins!";
-              break;
-            case "Spock":
-              message = "Spock vaporizes rock! Sheldon wins!";
-              break;
-          }
-          break;
-
-        case "paper":
-          switch (sheldonChoice) {
-            case "rock":
-              message = "Paper covers rock! " + userName + " wins!";
-              break;
-            case "scissors":
-              message = "Scissors cut paper! Sheldon wins!";
-              break;
-            case "lizard":
-              message = "Lizard eats paper! Sheldon wins!";
-              break;
-            case "Spock":
-              message = "Paper disproves Spock! " + userName + " wins!";
-              break;
-          }
-          break;
-
-        case "scissors":
-          switch (sheldonChoice) {
-            case "rock":
-              message = "Rock crushes scissors! Sheldon wins!";
-              break;
-            case "paper":
-              message = "Scissors cut paper! " + userName + " wins!";
-              break;
-            case "lizard":
-              message = "Scissors decapitate lizard! " + userName + " wins!";
-              break;
-            case "Spock":
-              message = "Spock smashes scissors! Sheldon wins!";
-              break;
-          }
-          break;
-
-        case "lizard":
-          switch (sheldonChoice) {
-            case "rock":
-              message = "Rock crushes lizard! Sheldon wins!";
-              break;
-            case "paper":
-              message = "Lizard eats paper! " + userName + " wins!";
-              break;
-            case "scissors":
-              message = "Scissors decapitate lizard! Sheldon wins!";
-              break;
-            case "Spock":
-              message = "Lizard poisons Spock! " + userName + " wins!";
-              break;
-          }
-          break;
-
-        case "Spock":
-          switch (sheldonChoice) {
-            case "rock":
-              message = "Spock vaporizes rock! " + userName + " wins!";
-              break;
-            case "paper":
-              message = "Paper disproves Spock! Sheldon wins!";
-              break;
-            case "scissors":
-              message = "Spock smashes scissors! " + userName + " wins!";
-              break;
-            case "lizard":
-              message = "Lizard poisons Spock! Sheldon wins!";
-              break;
-          }
-          break;
+    // Checks for valid user input
+    function checkUserChoice(userChoice) {
+      if (userChoice !== "rock" &&
+          userChoice !== "paper" &&
+          userChoice !== "scissors" &&
+          userChoice !== "lizard" &&
+          userChoice !== "Spock") {
+        return false;
+      } else {
+        return true;
       }
-    return message;
-  }
+    }
+
+    // Random selection for Sheldon, weighted towards "Spock"
+    function randomChoice() {
+      var randomSelection = Math.random();
+      if (randomSelection <= 0.125) {
+          return "rock";
+      } else if (randomSelection <= 0.25) {
+          return "paper";
+      } else if (randomSelection <= 0.375) {
+          return "scissors";
+      } else if (randomSelection <= 0.5) {
+          return "lizard";
+      } else {
+          return "Spock";
+      }
+    }
+
+    // Generates user's and Sheldon's choices
+    function choose() {
+      // User's choice
+      var userChoice = prompt("Okay " + userName + ", please select either 'rock', 'paper', 'scissors', 'lizard', or 'Spock'!");
+
+      // Confirm valid user input
+      while (!checkUserChoice(userChoice)) {
+        userChoice = prompt("That's not a valid choice, " + userName + "! Please select only 'rock', 'paper', 'scissors', 'lizard', or 'Spock'.");
+      }
+
+      // Sheldon's choice
+      var sheldonChoice = randomChoice();
+
+      // Resolves ties
+      while (sheldonChoice == userChoice) {
+
+        // User chooses again
+        userChoice = prompt("It's a tie! Please select 'rock', 'paper', 'scissors', 'lizard', or 'Spock' again.");
+
+        // Confirm valid user input
+        while (!checkUserChoice(userChoice)) {
+          userChoice = prompt("That's not a valid choice, " + userName + "! Please select only 'rock', 'paper', 'scissors', 'lizard', or 'Spock'.");
+        }
+
+        // Sheldon chooses again
+        sheldonChoice = randomChoice();
+      }
+      return [userChoice, sheldonChoice];
+    }
+
+    // Compares user and Sheldon selections and determines winner
+    function compare(choicesArray) {
+        var userChoice = choicesArray[0];
+        var sheldonChoice = choicesArray[1];
+        var message;
+
+        switch (userChoice) {
+          // If user chooses "rock"
+          case "rock":
+            switch (sheldonChoice) {
+              case "paper":
+                message = "Paper covers rock! Sheldon wins!";
+                break;
+              case "scissors":
+                message = "Rock crushes scissors! " + userName + " wins!";
+                break;
+              case "lizard":
+                message = "Rock crushes lizard! " + userName + " wins!";
+                break;
+              case "Spock":
+                message = "Spock vaporizes rock! Sheldon wins!";
+                break;
+            }
+            break;
+
+          // If user chooses "paper"
+          case "paper":
+            switch (sheldonChoice) {
+              case "rock":
+                message = "Paper covers rock! " + userName + " wins!";
+                break;
+              case "scissors":
+                message = "Scissors cut paper! Sheldon wins!";
+                break;
+              case "lizard":
+                message = "Lizard eats paper! Sheldon wins!";
+                break;
+              case "Spock":
+                message = "Paper disproves Spock! " + userName + " wins!";
+                break;
+            }
+            break;
+
+          // If user chooses "scissors"
+          case "scissors":
+            switch (sheldonChoice) {
+              case "rock":
+                message = "Rock crushes scissors! Sheldon wins!";
+                break;
+              case "paper":
+                message = "Scissors cut paper! " + userName + " wins!";
+                break;
+              case "lizard":
+                message = "Scissors decapitate lizard! " + userName + " wins!";
+                break;
+              case "Spock":
+                message = "Spock smashes scissors! Sheldon wins!";
+                break;
+            }
+            break;
+
+          // If user chooses "lizard"
+          case "lizard":
+            switch (sheldonChoice) {
+              case "rock":
+                message = "Rock crushes lizard! Sheldon wins!";
+                break;
+              case "paper":
+                message = "Lizard eats paper! " + userName + " wins!";
+                break;
+              case "scissors":
+                message = "Scissors decapitate lizard! Sheldon wins!";
+                break;
+              case "Spock":
+                message = "Lizard poisons Spock! " + userName + " wins!";
+                break;
+            }
+            break;
+
+          // If user chooses "Spock"
+          case "Spock":
+            switch (sheldonChoice) {
+              case "rock":
+                message = "Spock vaporizes rock! " + userName + " wins!";
+                break;
+              case "paper":
+                message = "Paper disproves Spock! Sheldon wins!";
+                break;
+              case "scissors":
+                message = "Spock smashes scissors! " + userName + " wins!";
+                break;
+              case "lizard":
+                message = "Lizard poisons Spock! Sheldon wins!";
+                break;
+            }
+            break;
+        }
+      return message;
+    }
+  })()
 
 </script>
 
