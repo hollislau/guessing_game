@@ -1,55 +1,66 @@
-<!DOCTYPE>
+<!DOCTYPE html>
 <html>
   <head>
-    <title>Rock Paper Scissors Lizard Spock</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Rock Paper Scissors Lizard Spock Game</title>
+    <meta name="description" content="Play the Rock Paper Scissors Lizard Spock game">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
-    <article>
-      <h1>Rock Paper Scissors Lizard Spock</h1>
-      <figure>
+    <header>
+      <h1>The Rock Paper Scissors Lizard Spock Game</h1>
+    </header>
+    <main>
+      <article>
+        <h1>Renowned physicist, Dr. Sheldon Cooper, challenges you to a match!</h1>
         <img src="images/sheldon_intro.jpg" alt="Image of Sheldon staring">
-        <br />
-        <figcaption>Renowned physicist, Dr. Sheldon Cooper, challenges you to a match!</figcaption>
-      </figure>
-      <section>
-        <h1>User Throws:</h1>
-          <button><img src="images/rock2.jpg" alt="Image of a rock"><br />Rock</button>
-          <button><img src="images/paper2.jpg" alt="Image of a stack of paper"><br />Paper</button>
-          <button><img src="images/scissors2.jpg" alt="Image of scissors"><br />Scissors</button>
-          <button><img src="images/lizard2.jpg" alt="Image of lizard"><br />Lizard</button>
-          <button><img src="images/spock2.jpg" alt="Image of Spock"><br />Spock</button>
-      </section>
-      <section>
-        <h1>Sheldon Throws:<h1>
-          <img src="images/sheldon_spock2.jpg" alt="Image of Sheldon holding up his hand in the traditional Vulcan greeting">
-      </section>
-      <section>
-        <h1>Game Statistics</h1>
-        <table>
-          <tr>
-            <th></th>
-            <th scope="col">Player</th>
-            <th scope="col">Sheldon</th>
-          </tr>
-          <tr>
-            <th scope="row">Wins:</th>
-            <td>0</td>
-            <td>0</td>
-          </tr>
-        </table>
-        <table>
-          <tr>
-            <th scope="row">Total Matches Played:</th>
-            <td>0</td>
-          </tr>
-        </table>
-      </section>
-      <nav>
-        <a href="gameinfo.html">Game Information</a>
-      </nav>
-    </article>
+        <h1 id="result">Who will win?</h1>
+        <section>
+          <h1>Please enter your name:</h1>
+          <input id="user-name" type="text" name="user-name" placeholder="Enter name here">
+          <input id="name-submit" type="submit" name="submit" value="Submit">
+        </section>
+        <section>
+          <h1><span id="choice">Now, make a selection!</h1>
+            <button id="rock"><img src="images/rock2.jpg" alt="Image of a rock"><br>Rock</button>
+            <button id="paper"><img src="images/paper2.jpg" alt="Image of a stack of paper"><br>Paper</button>
+            <button id="scissors"><img src="images/scissors2.jpg" alt="Image of scissors"><br>Scissors</button>
+            <button id="lizard"><img src="images/lizard2.jpg" alt="Image of lizard"><br>Lizard</button>
+            <button id="spocks"><img src="images/spock2.jpg" alt="Image of Spock"><br>Spock</button>
+        </section>
+        <section>
+            <!-- <img src="images/sheldon_spock2.jpg" alt="Image of Sheldon holding up his hand in the traditional Vulcan greeting"> -->
+        </section>
+        <section>
+          <h1>Game Statistics</h1>
+          <table>
+            <tr>
+              <th></th>
+              <th id="scoreboard-name" scope="col">Player</th>
+              <th scope="col">Sheldon</th>
+            </tr>
+            <tr>
+              <th scope="row">Wins:</th>
+              <td id="user-wins">0</td>
+              <td id="sheldon-wins">0</td>
+            </tr>
+          </table>
+          <table>
+            <tr>
+              <th scope="row">Total Matches Played:</th>
+              <td id="total">0</td>
+            </tr>
+          </table>
+        </section>
+      </article>
+    </main>
+    <nav>
+      <a href="gameinfo.html">Game Information</a>
+    </nav>
     <footer>
       <p>Designed by Hollis Lau, 2015</p>
     </footer>
+    <script src="../js/game.js"></script>
   </body>
 </html>
