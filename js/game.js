@@ -67,16 +67,15 @@
       return user.name;
     },
     choose: function(string) {
-      var choice = prompt(string);
-      if (choice === "rock") {
+      if (string === "rock") {
         user.choice = rock;
-      } else if (choice === "paper") {
+      } else if (string === "paper") {
         user.choice = paper;
-      } else if (choice === "scissors") {
+      } else if (string === "scissors") {
         user.choice = scissors;
-      } else if (choice === "lizard") {
+      } else if (string === "lizard") {
         user.choice = lizard;
-      } else if (choice === "Spock") {
+      } else if (string === "spock") {
         user.choice = spock;
       }
       return user.choice;
@@ -126,18 +125,14 @@
       var scoreboardName = document.getElementById("scoreboard-name");
       scoreboardName.innerHTML = user.name;
     },
-    choose: function() {
-      user.choose("Okay " + user.name + "! Please select either 'rock', 'paper', 'scissors', 'lizard', or 'Spock'.");
+    play: function(string) {
+      user.choose(string);
       sheldon.choose();
-      while (user.choice[sheldon.choice] === true) {
-        user.choose("It's a tie! Please select 'rock', 'paper', 'scissors', 'lizard', or 'Spock' again.");
-        sheldon.choose();
-      }
-      return user.choice[sheldon.choice];
-    },
-    play: function() {
-      do {
-        var choices = game.choose();
+      if (user.choice[sheldon.choice] === true) {
+        var tieMessage = document.getElementById("result");
+        tieMessage.innerHTML = "It's a tie! Please select again!";
+      } else {
+        var choices = user.choice[sheldon.choice];
         var winner = scoreboard.win(choices[1]);
         var message = choices[0] + winner;
         var result = document.getElementById("result");
@@ -148,16 +143,38 @@
         userWins.innerHTML = scoreboard.user;
         sheldonWins.innerHTML = scoreboard.sheldon;
         total.innerHTML = scoreboard.total;
-        var replay = confirm("Sheldon challenges you to another round, " + user.name + "! Do you want to play again?");
-      } while (replay);
-      var bye = document.getElementById("result");
-      bye.innerHTML = "Sheldon snickers at you condescendingly. 'I understand, " + user.name + ". You can't possibly match my intellectual prowess.'";
+      }
+    },
+    quit: function() {
+      var quit = document.getElementById("result");
+      quit.innerHTML = "Sheldon snickers condescendingly. 'I understand, " + user.name + ". You are no match for my intellectual prowess.'";
     }
   };
 
-  // document.getElementById("rock").addEventListener("click", game.play, false);
   var initialize = document.getElementById("user-name");
+  var rockButton = document.getElementById("rock");
+  var paperButton = document.getElementById("paper");
+  var scissorsButton = document.getElementById("scissors");
+  var lizardButton = document.getElementById("lizard");
+  var spockButton = document.getElementById("spock");
+  var quitButton = document.getElementById("quit");
+
   initialize.addEventListener("blur", game.initialize, false);
-  initialize.addEventListener("blur", game.play, false);
+  rockButton.addEventListener("click", function() {
+    game.play("rock");
+  }, false);
+  paperButton.addEventListener("click", function() {
+    game.play("paper");
+  }, false);
+  scissorsButton.addEventListener("click", function() {
+    game.play("scissors");
+  }, false);
+  lizardButton.addEventListener("click", function() {
+    game.play("lizard");
+  }, false);
+  spockButton.addEventListener("click", function() {
+    game.play("spock");
+  }, false);
+  quitButton.addEventListener("click", game.quit, false);
 
 })()
